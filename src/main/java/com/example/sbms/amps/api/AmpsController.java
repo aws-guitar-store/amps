@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/amps")
+@RequestMapping("/")
 public class AmpsController {
     private final GetAmps getAmps;
 
