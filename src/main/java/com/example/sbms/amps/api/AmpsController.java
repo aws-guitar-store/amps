@@ -24,15 +24,20 @@
 package com.example.sbms.amps.api;
 
 import com.example.sbms.amps.model.Amp;
+import com.example.sbms.amps.model.Amps;
 import com.example.sbms.amps.service.GetAmps;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping("/")
+@EnableKafka
+@Component
 public class AmpsController {
     private final GetAmps getAmps;
 
@@ -40,8 +45,19 @@ public class AmpsController {
         this.getAmps = getAmps;
     }
 
-    @GetMapping
-    public List<Amp> all() {
-        return getAmps.allByMakeAndModel();
+    @KafkaListener(topics = "${spring.kafka.consumer.properties.event.amps-requested.topic}", containerFactory = "filterKafkaListenerContainerFactory")
+    @SendTo
+    public Amps receiveGuitarsRequest(@Payload Filter filter) {
+        if (filter.forAll()) {
+            return new Amps(getAmps.allByMakeAndModel());
+        }
+        if (filter.forId()) {
+            Optional<Amp> amp = getAmps.byId(filter.id());
+            List<Amp> amps = new ArrayList<>();
+            amp.ifPresent(amps::add);
+            return new Amps(amps);
+        }
+        // TODO: handle other filters
+        return new Amps();
     }
 }

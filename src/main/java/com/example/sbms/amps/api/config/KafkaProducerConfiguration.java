@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.example.sbms.amps.service;
+package com.example.sbms.amps.api.config;
 
 import com.example.sbms.amps.model.Amps;
 import org.apache.kafka.clients.producer.ProducerConfig;
