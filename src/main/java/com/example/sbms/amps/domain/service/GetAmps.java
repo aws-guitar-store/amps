@@ -21,10 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.example.sbms.amps.service.data;
+package com.example.sbms.amps.domain.service;
 
-import com.example.sbms.amps.model.Amp;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.sbms.amps.domain.model.Amp;
+import com.example.sbms.amps.domain.service.data.AmpRepository;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
-public interface AmpRepository extends JpaRepository<Amp, Integer> {
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class GetAmps {
+    private final AmpRepository ampRepository;
+
+    public GetAmps(AmpRepository ampRepository) {
+        this.ampRepository = ampRepository;
+    }
+
+    public List<Amp> allByMakeAndModel() {
+        return ampRepository.findAll(Sort.by("make", "model"));
+    }
+
+    public Optional<Amp> byId(Integer id) {
+        return ampRepository.findById(id);
+    }
 }

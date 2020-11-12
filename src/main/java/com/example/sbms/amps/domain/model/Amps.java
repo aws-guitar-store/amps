@@ -21,34 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.example.sbms.amps.model;
+package com.example.sbms.amps.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
 
 @Data
-@Entity
-@Table(name = "amps")
-public class Amp {
-    @Id
-    private Integer id;
-
-    @Column
-    private String make;
-
-    @Column
-    private String model;
-
-    @Column
-    private String type;
-
-    @Column
-    private int price;
-
-    @Column
-    private String image;
+@NoArgsConstructor
+@AllArgsConstructor
+public class Amps {
+    private List<Amp> all;
 }

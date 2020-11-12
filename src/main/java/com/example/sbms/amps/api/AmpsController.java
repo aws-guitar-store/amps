@@ -23,9 +23,9 @@
  */
 package com.example.sbms.amps.api;
 
-import com.example.sbms.amps.model.Amp;
-import com.example.sbms.amps.model.Amps;
-import com.example.sbms.amps.service.GetAmps;
+import com.example.sbms.amps.domain.model.Amp;
+import com.example.sbms.amps.domain.model.Amps;
+import com.example.sbms.amps.domain.service.GetAmps;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;

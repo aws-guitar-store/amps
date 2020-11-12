@@ -23,7 +23,7 @@
  */
 package com.example.sbms.amps.api.config;
 
-import com.example.sbms.amps.model.Amps;
+import com.example.sbms.amps.domain.model.Amps;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

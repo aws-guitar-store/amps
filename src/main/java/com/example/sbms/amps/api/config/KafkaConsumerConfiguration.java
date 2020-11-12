@@ -23,7 +23,7 @@
  */
 package com.example.sbms.amps.api.config;
 
-import com.example.sbms.amps.model.Amps;
+import com.example.sbms.amps.domain.model.Amps;
 import com.example.sbms.amps.api.Filter;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
